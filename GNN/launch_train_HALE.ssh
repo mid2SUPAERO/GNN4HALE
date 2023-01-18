@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#SBATCH --job-name=HALE_ver4
+#SBATCH --nodes=1
+#SBATCH --ntasks=12
+#SBATCH --cpus-per-task=1
+#SBATCH --ntasks-per-node=12
+#SBATCH --begin=now
+#SBATCH --mail-user=michele.colombo@isae.fr
+#SBATCH --mail-type=FAIL,END
+#SBATCH --job-name=test
+#SBATCH -o slurm.%j.out # STDOUT
+#SBATCH -e slurm.%j.err # STDERR
+
+module load python
+source activate GNNp37
+
+python3 HALE_ver4_multi.py --directory $1 --filename_tr $2 --filename_va $3 --parameter1 $4  --parameter2 $5 
+
+
